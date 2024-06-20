@@ -27,6 +27,7 @@ enum Command {
     Next,
     Speed,
     Wait,
+    Event,
     Sprite,
     SFX,
     Interrupt,
@@ -85,6 +86,8 @@ static func compile(ddfcode, key, complete):
                         compiled.append({"type": Command.Block, "data": bool(inner[1])})
                     "n":
                         compiled.append({"type": Command.Next, "data": inner[1]})
+                    "e":
+                        compiled.append({"type": Command.Event, "data": inner[1]})
                     "s":
                         compiled.append({"type": Command.Speed, "data": int(inner[1])})
                     "w":

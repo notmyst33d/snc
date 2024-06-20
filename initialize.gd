@@ -11,4 +11,4 @@ func _ready():
     get_node("/root").get_texture().flags = Texture.FLAG_FILTER
 
     # For testing
-    get_tree().change_scene("res://ch1/level/bedroom.tscn")
+    get_tree().change_scene("res://sean_and_casey/level/bedroom.tscn")

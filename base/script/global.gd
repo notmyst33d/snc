@@ -1,19 +1,9 @@
 extends Node
 
-onready var root = get_tree().get_root()
-var viewport_mode = false
-var size = null
-
-var level = null
-
 var variables = {}
 
-func _ready():
+func get_size() -> Vector2:
     if ProjectSettings.get("display/window/stretch/mode") == "2d":
-        size = Vector2(ProjectSettings.get("display/window/size/width"), ProjectSettings.get("display/window/size/height"))
+        return Vector2(ProjectSettings.get("display/window/size/width"), ProjectSettings.get("display/window/size/height"))
     else:
-        viewport_mode = true
-
-func _process(delta):
-    if viewport_mode:
-        size = root.size
+        return get_tree().get_root().size

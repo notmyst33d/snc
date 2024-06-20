@@ -1,0 +1,147 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://sean_and_casey/sprite/room/forest.png" type="Texture" id=1]
+[ext_resource path="res://sean_and_casey/script/forest.gd" type="Script" id=2]
+[ext_resource path="res://sean_and_casey/object/player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://base/object/level_camera.tscn" type="PackedScene" id=4]
+[ext_resource path="res://sean_and_casey/casey_animations.tres" type="SpriteFrames" id=5]
+[ext_resource path="res://sean_and_casey/script/forest_cutscene_controller.gd" type="Script" id=6]
+[ext_resource path="res://sean_and_casey/object/tree.tscn" type="PackedScene" id=8]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 4.5, 146.5 )
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="Forest" type="Node2D" groups=["level"]]
+script = ExtResource( 2 )
+
+[node name="CutsceneController" type="Node" parent="." groups=["cutscene_controller"]]
+script = ExtResource( 6 )
+level = NodePath("..")
+sean = NodePath("../Objects/Player")
+casey_object = NodePath("../Objects/Casey/Sprite")
+casey_sprite = NodePath("../Objects/Casey/Sprite")
+
+[node name="ByeBye" type="Area2D" parent="CutsceneController"]
+position = Vector2( 2644, 4928 )
+
+[node name="Shape" type="CollisionShape2D" parent="CutsceneController/ByeBye"]
+position = Vector2( 8, 49 )
+shape = SubResource( 2 )
+
+[node name="LevelCamera" parent="." groups=["camera"] instance=ExtResource( 4 )]
+limit_right = 11792
+limit_bottom = 8032
+level = NodePath("..")
+
+[node name="Room" type="Sprite" parent="."]
+scale = Vector2( 4, 4 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Objects" type="YSort" parent="."]
+
+[node name="Player" parent="Objects" groups=["player"] instance=ExtResource( 3 )]
+position = Vector2( 1138, 4916 )
+can_move = false
+cutscene = true
+direction = 3
+
+[node name="Casey" type="Area2D" parent="Objects"]
+position = Vector2( 1025, 4963 )
+scale = Vector2( 4, 4 )
+
+[node name="Sprite" type="AnimatedSprite" parent="Objects/Casey"]
+frames = ExtResource( 5 )
+animation = "s"
+
+[node name="Shape" type="CollisionShape2D" parent="Objects/Casey"]
+shape = SubResource( 1 )
+
+[node name="Tree" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 966, 4418 )
+
+[node name="Tree2" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 1602, 4102 )
+
+[node name="Tree3" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 430, 4038 )
+
+[node name="Tree4" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 210, 4686 )
+
+[node name="Tree5" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 430, 6086 )
+
+[node name="Tree6" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( -170, 5642 )
+
+[node name="Tree7" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 602, 5234 )
+
+[node name="Tree8" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 1270, 5462 )
+
+[node name="Tree9" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 2258, 4686 )
+
+[node name="Tree10" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 2478, 4038 )
+
+[node name="Tree11" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 3650, 4102 )
+
+[node name="Tree12" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 3014, 4418 )
+
+[node name="Tree13" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 4526, 4038 )
+
+[node name="Tree14" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 4306, 4686 )
+
+[node name="Tree15" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 5062, 4418 )
+
+[node name="Tree16" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 5698, 4102 )
+
+[node name="Tree17" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 6354, 4686 )
+
+[node name="Tree18" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 1602, 6150 )
+
+[node name="Tree19" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 1878, 5642 )
+
+[node name="Tree20" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 2650, 5234 )
+
+[node name="Tree21" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 2478, 6086 )
+
+[node name="Tree22" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 3318, 5462 )
+
+[node name="Tree23" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 3650, 6150 )
+
+[node name="Tree24" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 3926, 5642 )
+
+[node name="Tree25" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 4526, 6086 )
+
+[node name="Tree26" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 4698, 5234 )
+
+[node name="Tree27" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 5366, 5462 )
+
+[node name="Tree28" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 5974, 5642 )
+
+[node name="Tree29" parent="Objects" instance=ExtResource( 8 )]
+position = Vector2( 5698, 6150 )

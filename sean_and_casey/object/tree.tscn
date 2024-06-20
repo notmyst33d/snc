@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://sean_and_casey/sprite/tree.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 103.5, 100.5 )
+
+[node name="Tree" type="StaticBody2D"]
+position = Vector2( 966, 4260 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 4, 4 )
+texture = ExtResource( 1 )
+offset = Vector2( 0, -39.389 )
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+position = Vector2( -2, 50.5 )
+shape = SubResource( 1 )

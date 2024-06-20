@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/wind.mp3-141bba9171a244d03dd70b86ee871796.mp3str"
+
+[deps]
+
+source_file="res://sean_and_casey/music/wind.mp3"
+dest_files=[ "res://.import/wind.mp3-141bba9171a244d03dd70b86ee871796.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

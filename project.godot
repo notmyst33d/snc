@@ -9,10 +9,40 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "CutsceneController",
+"class": "BedroomCutsceneController",
+"language": "GDScript",
+"path": "res://sean_and_casey/script/bedroom_cutscene_controller.gd"
+}, {
 "base": "Node",
 "class": "CancellableTween",
 "language": "GDScript",
 "path": "res://base/script/cancellable_tween.gd"
+}, {
+"base": "Node",
+"class": "CutsceneController",
+"language": "GDScript",
+"path": "res://base/script/cutscene_controller.gd"
+}, {
+"base": "Node",
+"class": "CutsceneObject",
+"language": "GDScript",
+"path": "res://base/script/cutscene_object.gd"
+}, {
+"base": "Area2D",
+"class": "DialogObject",
+"language": "GDScript",
+"path": "res://base/script/dialog_object.gd"
+}, {
+"base": "Control",
+"class": "DialogUI",
+"language": "GDScript",
+"path": "res://base/script/dialog_ui.gd"
+}, {
+"base": "CutsceneController",
+"class": "ForestCutsceneController",
+"language": "GDScript",
+"path": "res://sean_and_casey/script/forest_cutscene_controller.gd"
 }, {
 "base": "Node2D",
 "class": "Level",
@@ -24,6 +54,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://base/script/level_camera.gd"
 }, {
+"base": "CutsceneController",
+"class": "LivingRoomCutsceneController",
+"language": "GDScript",
+"path": "res://sean_and_casey/script/living_room_cutscene_controller.gd"
+}, {
 "base": "Area2D",
 "class": "Marker",
 "language": "GDScript",
@@ -33,18 +68,31 @@ _global_script_classes=[ {
 "class": "Node2DRow",
 "language": "GDScript",
 "path": "res://base/script/ui/node2d_row.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://base/script/player.gd"
 } ]
 _global_script_class_icons={
+"BedroomCutsceneController": "",
 "CancellableTween": "",
+"CutsceneController": "",
+"CutsceneObject": "",
+"DialogObject": "",
+"DialogUI": "",
+"ForestCutsceneController": "",
 "Level": "",
 "LevelCamera": "",
+"LivingRoomCutsceneController": "",
 "Marker": "",
-"Node2DRow": ""
+"Node2DRow": "",
+"Player": ""
 }
 
 [application]
 
-config/name="ALTERHEAVEN"
+config/name="Sean and Casey"
 run/main_scene="res://initialize.tscn"
 boot_splash/show_image=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
@@ -56,6 +104,7 @@ config/windows_native_icon="res://icon.ico"
 Global="*res://base/script/global.gd"
 Debug="*res://base/script/debug.gd"
 Fullscreen="*res://base/script/fullscreen.gd"
+Music="*res://base/script/music.gd"
 
 [display]
 

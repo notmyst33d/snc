@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/findher.ogg-4c732ec2932eb86de4c8ff126e2c214f.oggstr"
+
+[deps]
+
+source_file="res://sean_and_casey/music/findher.ogg"
+dest_files=[ "res://.import/findher.ogg-4c732ec2932eb86de4c8ff126e2c214f.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

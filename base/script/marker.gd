@@ -1,15 +1,13 @@
 tool
-extends Area2D
-
-class_name Marker
+class_name Marker extends Area2D
 
 const Player = preload("res://base/script/player.gd")
 
-export(String) var marker_name = "default"
+export var marker_name: String = "default"
 export(String, FILE) var next_level = null
-export(String) var next_level_marker_name = "default"
-export(NodePath) var player_spawn = null
-export(Player.Facing) var player_facing = Player.Facing.Down
+export var next_level_marker_name: String = "default"
+export var player_spawn_offset: Vector2 = Vector2.ZERO
+export(Player.Direction) var player_direction = Player.Direction.DOWN
 
 var editor_player = null
 
@@ -18,7 +16,7 @@ func _ready():
         if not marker_name:
             return
 
-        editor_player = load("res://base/object/player.tscn").instance()
+        editor_player = load("res://sean_and_casey/object/player.tscn").instance()
         add_child(editor_player)
 
 func _process(delta):
@@ -26,14 +24,17 @@ func _process(delta):
         if not editor_player or not marker_name:
             return
 
-        if player_facing == Player.Facing.Up:
-            editor_player.get_node("Sprite").animation = "Back"
-        elif player_facing == Player.Facing.Down:
-            editor_player.get_node("Sprite").animation = "Front"
-        elif player_facing == Player.Facing.Left:
-            editor_player.get_node("Sprite").animation = "Left"
-        elif player_facing == Player.Facing.Right:
-            editor_player.get_node("Sprite").animation = "Right"
+        if player_direction == Player.Direction.UP:
+            editor_player.get_sprite().animation = "b"
+            editor_player.get_sprite().flip_h = false
+        elif player_direction == Player.Direction.DOWN:
+            editor_player.get_sprite().animation = "f"
+            editor_player.get_sprite().flip_h = false
+        elif player_direction == Player.Direction.LEFT:
+            editor_player.get_sprite().animation = "s"
+            editor_player.get_sprite().flip_h = true
+        elif player_direction == Player.Direction.RIGHT:
+            editor_player.get_sprite().animation = "s"
+            editor_player.get_sprite().flip_h = false
 
-        if player_spawn:
-            editor_player.position = get_node(player_spawn).position
+        editor_player.position = player_spawn_offset

@@ -1,39 +1,34 @@
-extends Camera2D
+class_name LevelCamera extends Camera2D
 
-class_name LevelCamera
+var follow_player: bool = true
+var follow_position: Vector2
 
-export(NodePath) var player = null
-var player_node = null
+export var level: NodePath
+onready var _level = get_node(level) as Level
 
 func _ready():
-    if not player:
-        print("[LevelCamera] Player not set")
-        return
-
-    player_node = get_node(player)
-
     if OS.has_feature("mobile"):
         add_child(load("res://base/object/touch_buttons.tscn").instance())
 
 func _process(delta):
-    if not player_node:
-        return
-
-    var player_position = player_node.position
-    var center = Global.size / 2
+    var target_position = _level.get_player().global_position
+    if not follow_player:
+        target_position = follow_position
+    var size = Global.get_size()
+    var center = size / 2
 
     position = Vector2(
         clamp(
-            -(center.x - player_position.x),
+            -(center.x - target_position.x),
             0,
-            abs(Global.size.x - limit_right)
+            abs(size.x - limit_right)
         ),
         clamp(
-            -(center.y - player_position.y),
+            -(center.y - target_position.y),
             0,
-            abs(Global.size.y - limit_bottom)
+            abs(size.y - limit_bottom)
         )
     )
 
-func initiate_dialog():
-    pass
+func get_dialog_ui() -> DialogUI:
+    return $UI/Control/DialogUI as DialogUI

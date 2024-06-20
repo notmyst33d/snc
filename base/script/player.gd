@@ -1,37 +1,30 @@
 tool
-extends KinematicBody2D
+class_name Player extends KinematicBody2D
 
 signal interacted
-signal level_changed
 
-enum Facing {
-    Up,
-    Down,
-    Left,
-    Right,
+enum Direction {
+    UP,
+    DOWN,
+    LEFT,
+    RIGHT,
 }
+
+const ANIMATION_FRONT = "f"
+const ANIMATION_SIDE = "s"
+const ANIMATION_BACK = "b"
 
 onready var sprite = $Sprite
 
 var velocity = Vector2.ZERO
 var speed = 60
 var speed_multiplier = 1
-var can_move = true
-export(Facing) var facing = Facing.Down
+export var can_move = true
+export var cutscene = false
+export(Direction) var direction = Direction.DOWN
 
 var touch_position = null
 var touch_pressed = false
-
-func _ready():
-    if facing == Facing.Up:
-        sprite.animation = "Back"
-    elif facing == Facing.Down:
-        sprite.animation = "Front"
-    elif facing == Facing.Left:
-        sprite.animation = "Left"
-    elif facing == Facing.Right:
-        sprite.animation = "Right"
-    connect("level_changed", self, "disable_movement")
 
 func _input(event):
     if event is InputEventScreenTouch:
@@ -51,91 +44,76 @@ func _input(event):
             touch_position = event.position
 
 func _physics_process(delta):
-    if Engine.editor_hint:
+    if not can_move and not cutscene and sprite.playing:
+        sprite.stop()
+        sprite.frame = 0
+
+    if Engine.editor_hint or not can_move:
         return
 
     if Input.is_action_just_pressed("primary"):
         emit_signal("interacted")
 
     if Input.is_action_pressed("quadiary"):
+        sprite.speed_scale = 1.5
         speed_multiplier = 2
     else:
+        sprite.speed_scale = 1
         speed_multiplier = 1
 
     if check_inputs():
         move_and_slide(velocity * speed * speed_multiplier * scale)
         velocity = Vector2.ZERO
 
-func disable_movement():
-    can_move = false
-
-func enable_movement():
-    can_move = true
+func play_animation_wtf(target_direction, animation, flip, check_flip = false):
+    if (
+        direction == target_direction and
+        (
+            sprite.animation != animation or
+            (sprite.animation == animation and not sprite.playing) or
+            (sprite.animation == animation and sprite.flip_h != flip and check_flip)
+        )
+    ):
+        sprite.play(animation)
+        sprite.frame = 1
+        sprite.flip_h = flip
 
 func check_inputs():
-    if not can_move:
-        sprite.frame = 0
-        sprite.stop()
-        return false
-
-    var override = false
     var check = false
     if Input.is_action_pressed("up"):
         check = true
-        facing = Facing.Up
         velocity.y -= 1
-        override = true
-        if sprite.animation != "Back" or not sprite.playing:
-            sprite.play("Back")
+        direction = Direction.UP
     elif Input.is_action_pressed("down"):
         check = true
-        facing = Facing.Down
         velocity.y += 1
-        override = true
-        if sprite.animation != "Front" or not sprite.playing:
-            sprite.play("Front")
+        direction = Direction.DOWN
 
     if Input.is_action_pressed("left"):
         check = true
         velocity.x -= 1
-        if (sprite.animation != "Left" or not sprite.playing) and not override:
-            facing = Facing.Left
-            sprite.play("Left")
+        direction = Direction.LEFT
     elif Input.is_action_pressed("right"):
         check = true
         velocity.x += 1
-        if (sprite.animation != "Right" or not sprite.playing) and not override:
-            facing = Facing.Right
-            sprite.play("Right")
+        direction = Direction.RIGHT
+
+    play_animation_wtf(Direction.UP, ANIMATION_BACK, false)
+    play_animation_wtf(Direction.DOWN, ANIMATION_FRONT, false)
+    play_animation_wtf(Direction.LEFT, ANIMATION_SIDE, true, true)
+    play_animation_wtf(Direction.RIGHT, ANIMATION_SIDE, false, true)
 
     if check:
         return true
-
-    if false:
-        var level_camera = get_node("../LevelCamera")
-        if global_position.distance_to(level_camera.position + touch_position) >= 16:
-            velocity = global_position.direction_to(level_camera.position + touch_position)
-
-            override = false
-            if velocity.y > 0.5:
-                if sprite.animation != "Front" or not sprite.playing:
-                    sprite.play("Front")
-                override = true
-            elif velocity.y < -0.5:
-                if sprite.animation != "Back" or not sprite.playing:
-                    sprite.play("Back")
-                override = true
-
-            if not override:
-                if velocity.x > 0 and sprite.animation != "Right" or not sprite.playing:
-                    sprite.play("Right")
-                elif velocity.x < 0 and sprite.animation != "Left" or not sprite.playing:
-                    sprite.play("Left")
-
-            return true
 
     if sprite.playing:
         sprite.frame = 0
         sprite.stop()
 
     return false
+
+func get_sprite() -> AnimatedSprite:
+    return $Sprite as AnimatedSprite
+
+func set_collision(value):
+    $Shape.disabled = not value

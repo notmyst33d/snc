@@ -4,7 +4,7 @@
 [ext_resource path="res://sean_and_casey/sean_animations.tres" type="SpriteFrames" id=2]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 7.5, 5.00001 )
+extents = Vector2( 11, 4.75 )
 
 [node name="Player" type="KinematicBody2D"]
 scale = Vector2( 4, 4 )
@@ -16,5 +16,5 @@ frames = ExtResource( 2 )
 animation = "f"
 
 [node name="Shape" type="CollisionShape2D" parent="."]
-position = Vector2( 0.5, 14 )
+position = Vector2( 0, 24.25 )
 shape = SubResource( 2 )

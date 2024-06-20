@@ -1,0 +1,56 @@
+{
+    "_assume": "{s:20}",
+    "_csnorml": "{spr:sean_and_casey/sprite/casey/speak/normal.png}{sfx:sean_and_casey/sfx/casey/speak.wav}",
+    "_senorml": "{spr:sean_and_casey/sprite/sean/speak/normal.png}{sfx:sean_and_casey/sfx/sean/speak.wav}",
+
+    "bw01_01": "{i:_csnorml}Hey,{w:0.5} wake up sleepy bag!{n:bw01_02}",
+    "bw01_02": "{i:_senorml}{e:event_anim_peek}Nuh uh!{n:bw01_03}",
+    "bw01_03": "{i:_csnorml}It's 2 PM,{w:0.5} what do you mean \"nuh uh\"?{n:bw01_04}",
+    "bw01_04": "{i:_senorml}{e:event_anim_sleep}I am eepy.{n:bw01_05}",
+    "bw01_05": "{i:_csnorml}*sigh*{n:bw01_06}",
+    "bw01_06": "{i:_csnorml}SEAN JUST WAKE UP OR NO MORE 3DS.",
+
+    "bw02_01": "{i:_senorml}Jeez Casey,{w:0.5} do you really have to be that harsh?{n:bw02_02}",
+    "bw02_02": "{i:_csnorml}Well maybe if you listened to me...{n:bw02_03}",
+    "bw02_03": "{i:_csnorml}Then I wouldn't have used such measures.{n:bw02_04}",
+    "bw02_04": "{i:_csnorml}Anyways,{w:0.5} you little goofball...{n:bw02_05}",
+    "bw02_05": "{i:_csnorml}Come downstairs and eat your breakfast.{n:bw02_06}",
+    "bw02_06": "{i:_senorml}{e:event_anim_f}Fine.",
+
+    "3ds01": "{i:_senorml}Oh,{w:0.5} this is my Neetendo 3DS that Casey threatened to take away.{n:3ds02}",
+    "3ds02": "{i:_senorml}It's not time for games anyway.{n:3ds03}",
+    "3ds03": "{i:_senorml}Maybe I'll play it sometime later.",
+
+    "lh01": "{i:_csnorml}Hey,{w:0.5} come here!{w:0.5} The food is getting cold!",
+
+    "out01": "{i:_csnorml}Sooooooo{w:0.5} what do you wanna do today?{n:out02}",
+    "out02": "{i:_senorml}I don't know.{n:out03}",
+    "out03": "{i:_senorml}I'm not really in the mood for an adventure today.{n:out04}",
+    "out04": "{i:_csnorml}Oh come on!{w:0.5} Let's go outside.{n:out05}",
+    "out05": "{i:_senorml}{s:3}...{n:out06}",
+    "out06": "{i:_senorml}Alright,{w:0.5} but only if we just walk around the forest.{n:out07}",
+    "out07": "{i:_senorml}No silly little games.{n:out08}",
+    "out08": "{i:_csnorml}Sounds good to me.",
+
+    "fr01": "{i:_csnorml}It's a bit quiet today.{n:fr02}",
+    "fr02": "{i:_senorml}But why?{n:fr03}",
+    "fr03": "{i:_csnorml}Who knows,{w:0.5} maybe the birds are relocating.{n:fr04}",
+    "fr04": "{i:_csnorml}It's autumn after all.{n:fr05}",
+    "fr05": "{i:_senorml}Huh,{w:0.5} you are right.",
+
+    "ms01": "{i:_senorml}Say,{w:0.5} do you know anything about trains?{n:ms02}",
+    "ms02": "{i:_senorml}I always wondered how they work ever since we were kids.{n:ms03}",
+    "ms03": "{i:_senorml}Are they powered by magic and unicorns?{n:ms04}",
+    "ms04": "{i:_senorml}OR ARE THEY MOVING BY THE SATANS FORCE?",
+
+    "in01": "{i:_senorml}Was my joke really that-{w:0.2}{e:event_interrupt}",
+
+    "uh01": "{i:_senorml}What did I tell you?{w:0.5} No silly little games!{n:uh02}",
+    "uh02": "{i:_senorml}Come on out,{w:0.5} Casey.",
+
+    "cr01": "{i:_senorml}{s:3}...{n:cr02}",
+    "cr02": "{i:_senorml}You are creeping me out.{n:cr03}",
+    "cr03": "{i:_senorml}Please come out wherever you are.",
+
+    "oops01": "{i:_senorml}{s:3}Casey...?"
+}

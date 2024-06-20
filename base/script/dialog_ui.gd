@@ -1,11 +1,12 @@
-extends Control
+class_name DialogUI extends Control
 
-signal dialog_finished
-signal control_changed
+signal finished
+signal event
 signal counter_changed
 
 const DDF = preload("res://base/lib/ddf.gd")
 
+var loaded_file = ""
 var strings = null
 
 var current = null
@@ -28,6 +29,7 @@ onready var face_node = $BoxControl/Container/Contents/FaceControl/Face
 onready var text_node = $BoxControl/Container/Contents/FaceControl/TypeControl/Container/StarControl/TextControl/Text
 
 func load_ddf(file):
+    loaded_file = file
     strings = DDF.parse(file)
 
 func _type_char():
@@ -67,9 +69,9 @@ func _reset_wait():
 func _finish():
     current = null
     visible = false
-    emit_signal("dialog_finished")
+    emit_signal("finished")
 
-func initiate(dialog):
+func show_dialog(dialog):
     _reset()
     _reset_current_next()
     current = strings[dialog]
@@ -115,10 +117,10 @@ func _process(delta):
             while current_index < len(current) and one_frame:
                 #print(current[current_index]["type"])
                 match current[current_index]["type"]:
-                    DDF.Command.Block:
-                        emit_signal("control_changed", current[current_index]["data"])
                     DDF.Command.Next:
                         next = strings[current[current_index]["data"].get_slice("/", 1)]
+                    DDF.Command.Event:
+                        emit_signal("event", current[current_index]["data"])
                     DDF.Command.Text:
                         if skip:
                             text_node.text += current[current_index]["data"]
